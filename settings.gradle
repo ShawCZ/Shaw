@@ -1,0 +1,1 @@
+include ':app', ':shaw-annotations', ':shaw-compiler', ':shaw-core', ':shaw-ec'
