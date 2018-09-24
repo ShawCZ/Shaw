@@ -17,7 +17,7 @@ public final class Shaw {
         return Configurator.getInstance().getConfigs();
     }
 
-    public static Object getConfig(Enum<ConfigKey> key) {
+    public static <T>T getConfig(Enum<ConfigKey> key) {
         return Configurator.getInstance().getConfig(key);
     }
 

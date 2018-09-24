@@ -2,13 +2,17 @@ package com.shaw.core.app;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * Author by Shaw on 2018/9/14 00:40
  */
 public class Configurator {
     private static final HashMap<Object, Object> SHAW_CONFIGS = new HashMap<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         SHAW_CONFIGS.put(ConfigKey.CONFIG_READY, false);
@@ -33,6 +37,18 @@ public class Configurator {
 
     public final Configurator withApplication(Context context) {
         SHAW_CONFIGS.put(ConfigKey.APPLICATION_CONTEXT, context);
+        return this;
+    }
+
+    public final Configurator withIntercepter(Interceptor intercepter) {
+        INTERCEPTORS.add(intercepter);
+        SHAW_CONFIGS.put(ConfigKey.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptera(ArrayList<Interceptor> intercepters) {
+        INTERCEPTORS.addAll(intercepters);
+        SHAW_CONFIGS.put(ConfigKey.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 

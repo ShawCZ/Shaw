@@ -7,5 +7,5 @@ public enum ConfigKey {
     API_HOST,
     APPLICATION_CONTEXT,
     CONFIG_READY,
-    ICON
+    INTERCEPTOR
 }
