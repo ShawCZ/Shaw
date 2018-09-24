@@ -8,6 +8,7 @@ import com.shaw.core.net.callback.IRequest;
 import com.shaw.core.net.callback.ISuccess;
 import com.shaw.core.ui.loader.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -26,6 +27,7 @@ public class RestClintBulider {
     private IFailure mFailure = null;
     private IError mError = null;
     private RequestBody mBody = null;
+    private File mFile = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
 
@@ -54,6 +56,16 @@ public class RestClintBulider {
 
     public final RestClintBulider raw(RequestBody body) {
         this.mBody = body;
+        return this;
+    }
+
+    public final RestClintBulider file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClintBulider file(String file) {
+        this.mFile = new File(file);
         return this;
     }
 
@@ -91,7 +103,7 @@ public class RestClintBulider {
 
 
     public RestClient build() {
-        return new RestClient(mUrl, PARAMS, mResquest, mSuccess, mFailure, mError, mBody, mContext, mLoaderStyle);
+        return new RestClient(mUrl, PARAMS, mResquest, mSuccess, mFailure, mError, mBody, mFile, mContext, mLoaderStyle);
     }
 
 
