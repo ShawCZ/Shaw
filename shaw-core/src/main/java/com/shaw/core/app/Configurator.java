@@ -47,6 +47,7 @@ public class Configurator {
         }
     }
 
+    @SuppressWarnings("unchecked")
     final <T> T getConfig(Enum<ConfigKey> key) {
         checkConfiguration();
         return (T) SHAW_CONFIGS.get(key);

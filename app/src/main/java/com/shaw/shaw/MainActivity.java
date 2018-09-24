@@ -1,13 +1,15 @@
 package com.shaw.shaw;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.shaw.core.activitys.ProxyActivity;
+import com.shaw.core.delegates.ShawDelegate;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * @author hx
+ */
+public class MainActivity extends ProxyActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public ShawDelegate setRootDelegate() {
+        return new MainDelegate();
     }
 }
