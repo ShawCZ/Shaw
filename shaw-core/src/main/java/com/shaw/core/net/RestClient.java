@@ -7,6 +7,7 @@ import com.shaw.core.net.callback.IFailure;
 import com.shaw.core.net.callback.IRequest;
 import com.shaw.core.net.callback.ISuccess;
 import com.shaw.core.net.callback.RequestCallbacks;
+import com.shaw.core.net.download.DownloadHandler;
 import com.shaw.core.ui.loader.LoaderStyle;
 import com.shaw.core.ui.loader.ShawLoader;
 
@@ -31,6 +32,9 @@ public class RestClient {
     private final IError ERROR;
     private final RequestBody BODY;
     private final File FILE;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
 
@@ -43,7 +47,10 @@ public class RestClient {
                IError error,
                RequestBody body,
                File file,
-               Context CONTEXT,
+               String downloadDir,
+               String extension,
+               String name,
+               Context context,
                LoaderStyle loaderStyle) {
         this.URL = url;
         this.PARAMS = params;
@@ -53,7 +60,10 @@ public class RestClient {
         this.ERROR = error;
         this.BODY = body;
         this.FILE = file;
-        this.CONTEXT = CONTEXT;
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
+        this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
     }
 
@@ -151,6 +161,10 @@ public class RestClient {
 
     public final void upload() {
         request(HttpMethod.UPLOAD);
+    }
+
+    public final void download(){
+        new DownloadHandler(URL,PARAMS,REQUEST,SUCCESS,FAILURE,ERROR,DOWNLOAD_DIR,EXTENSION,NAME).handleDownload();
     }
 
 }

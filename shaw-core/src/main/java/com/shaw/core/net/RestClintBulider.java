@@ -30,6 +30,9 @@ public class RestClintBulider {
     private File mFile = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
+    private String mDownloadDir;
+    private String mExtension;
+    private String mName;
 
     RestClintBulider() {
     }
@@ -69,6 +72,21 @@ public class RestClintBulider {
         return this;
     }
 
+    public final RestClintBulider dir(String downloadDir) {
+        this.mDownloadDir = downloadDir;
+        return this;
+    }
+
+    public final RestClintBulider extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
+    public final RestClintBulider name(String name) {
+        this.mName = name;
+        return this;
+    }
+
     public final RestClintBulider success(ISuccess iSuccess) {
         this.mSuccess = iSuccess;
         return this;
@@ -103,7 +121,7 @@ public class RestClintBulider {
 
 
     public RestClient build() {
-        return new RestClient(mUrl, PARAMS, mResquest, mSuccess, mFailure, mError, mBody, mFile, mContext, mLoaderStyle);
+        return new RestClient(mUrl, PARAMS, mResquest, mSuccess, mFailure, mError, mBody, mFile, mDownloadDir, mExtension, mName, mContext, mLoaderStyle);
     }
 
 
